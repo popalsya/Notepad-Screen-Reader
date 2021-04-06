@@ -8,7 +8,7 @@ namespace Notepad_Screen_Reader.Lib
 {
     class ScreenReader
     {
-        public IProgress<string> Progress { private get; set; }
+        public Action<string> Log { private get; set; }
 
         private static SpeechSynthesizer Speech { get; set; }
 
@@ -34,7 +34,7 @@ namespace Notepad_Screen_Reader.Lib
 
             if (element.Current.ControlType.ProgrammaticName != "ControlType.MenuItem") return;
 
-            Progress.Report(element.Current.Name);
+            Log?.Invoke(element.Current.Name);
 
             Speech.SpeakAsyncCancelAll();
             Speech.SpeakAsync(element.Current.Name);

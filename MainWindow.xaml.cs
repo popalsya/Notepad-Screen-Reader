@@ -32,7 +32,7 @@ namespace Notepad_Screen_Reader
 
             var screenReader = new ScreenReader()
             {
-                Progress = progress
+                Log = progress.Report
             };
 
             screenReader.StartEventWatcher();
